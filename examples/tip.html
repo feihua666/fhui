@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui文档</title>
+    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <style>
+.fhui-tip-box{
+	padding:2px 8px;
+    background:#E9FBE4;
+    box-shadow:1px 2px 3px #E9FBE4;
+    border:1px solid #C9E9C0;
+    border-radius:4px;
+    color:#0C7823;
+	max-width:200px;
+	position: absolute;
+}
+
+.fhui-tip-arrow {
+	position:absolute;
+	border:0;
+}
+.fhui-tip-arrow-border,.fhui-tip-arrow-bg{
+	width:0;
+    height:0;
+    border-width:4px;
+	border-style: solid ;
+	border-color: transparent;
+	position:absolute;
+}
+
+/*left*/
+.fhui-tip-arrow.arrow-left{
+	width:15px;
+	height:10px;
+	left :-15px;
+	top:5px;
+}
+.fhui-tip-arrow.arrow-left .fhui-tip-arrow-border,.fhui-tip-arrow.arrow-left .fhui-tip-arrow-bg{
+	border-left:0px;
+	border-right-width:15px;
+}
+.fhui-tip-arrow.arrow-left .fhui-tip-arrow-border{
+	border-right-color: #C9E9C0;
+
+}
+.fhui-tip-arrow.arrow-left .fhui-tip-arrow-bg{
+	border-right-color: #E9FBE4;
+	left:4px;
+}
+ /*right*/
+.fhui-tip-arrow.arrow-right{
+	width:15px;
+	height:11px;
+	right :-15px;
+	top:5px;
+}
+.fhui-tip-arrow.arrow-right .fhui-tip-arrow-border,.fhui-tip-arrow.arrow-right .fhui-tip-arrow-bg{
+	border-right:0px;
+	border-left-width:15px;
+}
+.fhui-tip-arrow.arrow-right .fhui-tip-arrow-border{
+	border-left-color: #C9E9C0;
+
+}
+.fhui-tip-arrow.arrow-right .fhui-tip-arrow-bg{
+	border-left-color: #E9FBE4;
+	right:4px;
+}
+  /*top*/
+.fhui-tip-arrow.arrow-top{
+	width:10px;
+	height:15px;
+	left :5px;
+	top:-15px;
+}
+.fhui-tip-arrow.arrow-top .fhui-tip-arrow-border,.fhui-tip-arrow.arrow-top .fhui-tip-arrow-bg{
+	border-top:0px;
+	border-bottom-width:15px;
+}
+.fhui-tip-arrow.arrow-top .fhui-tip-arrow-border{
+	border-bottom-color: #C9E9C0;
+
+}
+.fhui-tip-arrow.arrow-top .fhui-tip-arrow-bg{
+	border-bottom-color: #E9FBE4;
+	top:4px;
+}
+  /*bottom*/
+.fhui-tip-arrow.arrow-bottom{
+	width:10px;
+	height:15px;
+	left :5px;
+	bottom:-15px;
+}
+.fhui-tip-arrow.arrow-bottom .fhui-tip-arrow-border,.fhui-tip-arrow.arrow-bottom .fhui-tip-arrow-bg{
+	border-bottom:0px;
+	border-top-width:15px;
+}
+.fhui-tip-arrow.arrow-bottom .fhui-tip-arrow-border{
+	border-top-color: #C9E9C0;
+
+}
+.fhui-tip-arrow.arrow-bottom .fhui-tip-arrow-bg{
+	border-top-color: #E9FBE4;
+	bottom:4px;
+}
+  *,*:after, *:before {
+    box-sizing: border-box;
+}
+
+  			body{
+				padding-left:100px;
+			}
+			a{
+				margin:35px;
+				display:inline-block;
+				width:100px;
+				border:green 1px solid;
+			}
+  </style>
+  <body>
+<div class="fhui-tip-box test" style="left: 258px; top: 513px; ">
+    <div class="fhui-tip-inner">
+        这是一个tip12这是一个tip12这是一个tip12这是一个tip12这是一个tip12这是一个tip12
+    </div>
+    <div class="fhui-tip-arrow arrow-left" style="top: 38px;">
+        <div class="fhui-tip-arrow-border">
+        </div>
+        <div class="fhui-tip-arrow-bg">
+        </div>
+    </div>
+</div>
+		<input id="in" class="fhui-tip" onfocus="$(this).fhuiTip('show')" onblur="$(this).fhuiTip('hide')"  data-options="position:'right',tip:'这是一个tip'" value="请让我失去或得到焦点"/>
+		<br/>
+		<a class="fhui-tip" data-options="position:'bottom',tip:'这是一个tip'">a</a>
+		<br/>
+		<a class="testtip" position="left">a</a>
+		<br/>
+		<a onclick="$(this).fhuiTip('hide')" class="fhui-tip" data-options="position:'left',tip:'这是一个tip2'">a2 点击我只隐藏</a>
+		<a onclick="$(this).fhuiTip('remove')" class="fhui-tip" data-options="position:'right',tip:'这是一个tip3'" >a3 点击我删除哦。。</a>
+		<a  class="fhui-tip" data-options="tip:'这是一个tip4'" tip="这是一个tip4">a4</a>
+		<a  class="fhui-tip" data-options="position:'right',tip:'这是一个tip5'" >a5</a><br/>
+		<a  class="fhui-tip" data-options="position:'left',tip:'这是一个tip6'" >a6</a>
+		<a  class="fhui-tip" data-options="position:'top',tip:'这是一个tip7'" >a7</a>
+		<a  class="fhui-tip" data-options="position:'left',tip:'这是一个tip8'" >a8</a>
+		<a  class="fhui-tip" data-options="position:'top',tip:'这是一个tip9'" >a9</a>
+		<a  class="fhui-tip" data-options="position:'right',tooltip:false,tip:'这是一个tip10'" >a10</a><br/>
+		<a  class="fhui-tip" data-options="position:'right',tip:'这是一个tip11'" >a11</a><br/>
+		<a  class="fhui-tip" data-options="position:'right',tip:'这是一个tip12这是一个tip12这是一个tip12这是一个tip12这是一个tip12这是一个tip12'" >a12</a><br/>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+  </body>
+</html>

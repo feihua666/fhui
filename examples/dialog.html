@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+	    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+	<link href="icon/style.css" rel="stylesheet">
+  </head>
+  <style>
+  *,*:after, *:before {
+    box-sizing: border-box;
+	}
+.fhui-dialog{
+	position:absolute;
+	background-color:#CDD9E7;
+	border:1px solid #B0BBC2;
+}
+.fhui-dialog-header,.fhui-dialog-content,.fhui-dialog-footer{
+	padding: 0.25em 0.5em;
+	min-height:18px;
+}
+.fhui-dialog-footer{
+    border-top: 1px solid rgb(236, 236, 236);
+	border-bottom: 1px solid #B0BBC2;
+	text-align:right;
+}
+.fhui-dialog,.fhui-dialog-header,.fhui-dialog-footer{
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#CDD9E7), to(#E6F2FE));
+    background-image: -moz-linear-gradient(#CDD9E7, #E6F2FE);
+    background-image: -o-linear-gradient(#CDD9E7, #E6F2FE);
+    background-image: linear-gradient(#CDD9E7,#E6F2FE);
+	
+}
+.fhui-dialog-content{
+	background-color:#D8E6F1;
+	border:1px solid #A4BAD2;
+	overflow:auto;
+}
+.fhui-dialog-close{
+	position:absolute;
+	right:.85em;
+	top:.85em;
+}
+.fhui-dialog-tool{
+	font-size:.6em;
+	color : gray;
+}
+.fhui-dialog-close:hover{
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.796), 0 0 10px rgba(255, 255, 255, 0.298);
+	cursor:pointer;
+}
+.fhui-dialog-mask{
+	position:fixed;
+	background: none repeat scroll 0 0 rgb(119, 119, 119);
+    font-size: 1px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0.25;
+    overflow: hidden;
+    width: 100%;
+}
+.fhui-dialog-textarea{
+	width: 100%;
+	height: 100%;
+	resize:none;
+}
+
+  </style>
+  <body>
+		<div  class="fhui-dialog" data-options="header:'header'">
+			<div>
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>
+			</div>
+		</div>
+		<div  class="fhui-dialog" data-options="header:'header',model:true">
+			<div>
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>				
+				this is a contener
+				<input/>
+				<br/>
+			</div>
+		</div>
+		
+		<div  class="fhui-alert" data-options="header:'alert'">
+			提示消息','恭喜您中了头等奖！
+		</div>
+		<div  class="fhui-confirm" data-options="header:'confirm'">
+			您确定中了头等奖吗！
+		</div>
+		<div  class="fhui-prompt" data-options="header:'prompt'">
+			<textarea></textarea>
+		</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+	<script>
+		$(function(){
+			$.fhuiPrompt.defaults.header = '请输入'
+		$.fhuiPrompt({
+			sure : function(value){
+				alert(value)
+			}
+		})
+		})
+	</script>
+  </body>
+</html>

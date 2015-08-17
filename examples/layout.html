@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui文档</title>
+    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <style>
+.fhui-layout{
+	position:relative;
+}
+.fhui-layout-left,.fhui-layout-right,.fhui-layout-center,.fhui-layout-top,.fhui-layout-bottom {
+	border: 1px solid #BED5F3;
+	overflow: auto;
+	position:absolute;
+}
+
+.fhui-layout-left,.fhui-layout-right{
+	width:200px;
+}
+.fhui-layout-top{
+	height:80px;
+}
+.fhui-layout-bottom{
+	height:30px;
+}
+.fhui-layout-top-resize,.fhui-layout-bottom-resize{
+	border:0;
+	width:100%;
+	height:5px;
+	position:absolute;
+	background-color:gray;
+	opacity:0.1;
+}
+.fhui-layout-left-resize,.fhui-layout-right-resize{
+	border:0;
+	width:5px;
+	position:absolute;
+	background-color:gray;
+	opacity:0.1;
+}
+.fhui-layout-left-resize:hover,.fhui-layout-right-resize:hover{
+	cursor:e-resize;
+}
+.fhui-layout-top-resize:hover,.fhui-layout-bottom-resize:hover{
+	cursor:s-resize;
+}
+
+
+  </style>
+  <body>
+    <h1>你好，世界！</h1>
+
+		  <div class="fhui-layout" data-options="type:'page'" style="width:500px;height:400px;">
+				<div data-options="position:'top',height:80,resize:true">
+					top
+				</div>
+				<div data-options="position:'left',resize:true">
+					left
+				</div>
+				<div data-options="position:'center'" style="border:0;">
+
+					<div class="fhui-layout" style="width:100%;height:100%;">
+						<div data-options="position:'top',height:80,resize:true">
+						top
+						</div>
+						<div data-options="position:'left',width:200,resize:true">
+							left
+						</div>
+						<div data-options="position:'center'">
+									
+						</div>
+						<div data-options="position:'right',width:200,resize:true">
+							right
+						</div>
+						<div data-options="position:'bottom',height:50,resize:true">
+							bottom
+						</div>	
+					</div>
+
+				</div>
+				<div data-options="position:'right',width:200,resize:true">
+					right
+				</div>
+				<div data-options="position:'bottom',height:50,resize:true">
+					bottom
+				</div>
+			</div> 
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+	    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+  </head>
+  <style>
+  *,*:after, *:before {
+    box-sizing: border-box;
+	}
+.fhui-paginator{
+	margin:0 auto;
+}
+.fhui-paginator-element,.fhui-paginator-go-button,.fhui-paginator-pre,.fhui-paginator-next{
+	display:inline-block;
+	padding:0px 5px;
+	height:20px;
+	line-height:20px;
+	margin:0 2px;
+	border: 1px #f4f4f4 solid;
+	text-align:center;
+	background-color:#f4f4f4;
+}
+.fhui-paginator-ellipsis{
+	padding:0px 5px;
+}
+.fhui-paginator-element:hover,.fhui-paginator-element-current,.fhui-paginator-go-button:hover,.fhui-paginator-pre:hover,.fhui-paginator-next:hover{
+	background-color:#9BCD9B !important;
+}
+.fhui-paginator-element:hover,.fhui-paginator-go-button:hover,.fhui-paginator-pre:hover,.fhui-paginator-next:hover{
+	cursor:pointer;
+}
+.fhui-paginator-element-current{
+	cursor:auto !important;
+}
+.fhui-paginator-go-box{
+	padding:0px 5px;
+}
+  </style>
+  <body>
+
+		<h2>1、默认</h2>
+		<button onclick="getcurrent('paginator1')"  class="fhui-button">获取当前页</button>
+		<input id="page1" type="text" value="5"/>
+		<button onclick="gopage('paginator1',$('#page1').val())"  class="fhui-button">跳转</button>
+		<div id="paginator1" class="fhui-paginator" data-options="totalPage:120,currentPage:10">
+		</div>
+
+		<h2>2、实用型</h2>
+		<button onclick="getcurrent('paginator2')"  class="fhui-button">获取当前页</button>
+		<input id="page2" type="text" value="6"/>
+		<button onclick="gopage('paginator2',$('#page2').val())"  class="fhui-button">跳转</button>
+		<div id="paginator2" class="fhui-paginator" data-options="preNext:false,totalPage:120,currentPage:10">
+		</div>
+		
+		<h2>3、简约</h2>
+		<button onclick="getcurrent('paginator3')"  class="fhui-button">获取当前页</button>
+		<input id="page3" type="text" value="7"/>
+		<button onclick="gopage('paginator3',$('#page3').val())"  class="fhui-button">跳转</button>
+		<div id="paginator3" class="fhui-paginator" data-options="goPage:false,totalPage:4,currentPage:1">
+		</div>
+		
+		<h2>4、清爽原型</h2>
+		<button onclick="getcurrent('paginator4')"  class="fhui-button">获取当前页</button>
+		<input id="page4" type="text" value="7"/>
+		<button onclick="gopage('paginator4',$('#page4').val())"  class="fhui-button">跳转</button>
+		<div id="paginator4" class="fhui-paginator" data-options="preNext:false,goPage:false,totalPage:120,currentPage:10">
+		</div>
+				<h2>4、页码长度自定义</h2>
+		分为左、中、右三个部分，长度自定
+		<br/>
+		<button onclick="getcurrent('paginator5')"  class="fhui-button">获取当前页</button>
+		<input id="page5" type="text" value="7"/>
+		<button onclick="gopage('paginator5',$('#page5').val())"  class="fhui-button">跳转</button>
+		<div id="paginator5" class="fhui-paginator" data-options="maxLeft:10,maxCenter:20,maxRight:5,goPage:false,totalPage:120,currentPage:50">
+		</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+	<script>
+	function getcurrent(id){
+		alert($('#' + id).fhuiPaginator('getCurrentPage'));
+	}
+	function gopage(id,num){
+		$('#' + id).fhuiPaginator('goPage',num);
+	}
+	</script>
+  </body>
+</html>

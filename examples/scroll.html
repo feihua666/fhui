@@ -1,0 +1,522 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui文档</title>
+    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+    <style>
+	*,*:after, *:before {
+		box-sizing: border-box;
+		}
+.fhui-scroll-vertical,.fhui-scroll-vertical-bar,.fhui-scroll-horizontal,.fhui-scroll-horizontal-bar{
+	position:absolute;
+}
+.fhui-scroll-contener{
+	position:relative;
+	overflow:hidden;
+	height: 100%;
+    max-width: 100%;
+	padding:0px;
+	margin:0px;
+	border:0px;
+}
+.fhui-scroll-content{
+	display:inline-block;
+	position:relative;
+}
+.fhui-scroll-vertical{
+	width:7px;
+	height:100%;
+	top:0;
+	right:0;
+}
+.fhui-scroll-vertical-bar{
+	width:100%;
+	
+}
+.fhui-scroll-horizontal{
+	height:7px;
+	width:100%;
+	left:0;
+	bottom:0;
+}
+.fhui-scroll-horizontal-bar{
+	height:100%;
+}
+.fhui-scroll-horizontal-bar,.fhui-scroll-vertical-bar{
+	border:solid 1px black;
+	background-color:black;
+	border-radius:5px;
+	opacity:0.5;
+}
+.fhui-scroll-horizontal-bar:hover,.fhui-scroll-vertical-bar:hover{
+	cursor:pointer;
+}
+  </style>
+<body>
+
+		<div class="fhui-scroll" style="width:800px;height:600px;border:1px solid #E9FBE4;" data-options='{axis:"h",scroll:"h"}'>
+
+			<div>
+				<pre>
+					package com.feitian.business.dao;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.feitian.business.entity.StaffEntity;
+import com.feitian.business.entity.WeeklyEntity;
+import com.feitian.system.common.CalendarUtils;
+import com.feitian.system.common.Paginator;
+import com.feitian.system.common.StringUtils;
+import com.feitian.system.hibernate.jpa.dao.HibernateJpaDao;
+
+/**
+ * 工作周报数据访问
+ * @author yangwei
+ * 时间：2014年4月1日 11:41:59
+ *
+ */
+@Repository
+public class WeeklyDao {
+	public static final Logger logger = Logger.getLogger(WeeklyDao.class);
+	@Autowired
+	private HibernateJpaDao baseDao;
+	@Autowired
+	private StaffDao staffDao;
+	public boolean addReport(String userAccount,String reportTime,String weekNum, String workContent,
+			String questionSuggestion, String nextWeekPlain) {
+		
+		List<StaffEntity> staffList = staffDao.getStaffByAccount(userAccount);
+		StaffEntity s = (StaffEntity)staffList.get(0);
+		
+		WeeklyEntity report = new WeeklyEntity();
+		report.setDepartment(s.getDept());
+		report.setReportTime(reportTime);
+		report.setReportWeekNum(weekNum+"");
+		report.setUserAccount(userAccount);
+		report.setUserName(s.getStaffName());
+		report.setWorkContent(workContent);
+		report.setQuestionSuggestion(questionSuggestion);
+		report.setNextWeekPlain(nextWeekPlain);
+		report.setAddTime(CalendarUtils.StringToDate(CalendarUtils.DateToString(new Date(), "yyyy-MM-dd") , "yyyy-MM-dd"));
+		try{
+			baseDao.add(report);
+		}catch(Exception e){
+			return false;
+		}
+		
+		return true;
+	}
+	public boolean deleteReports(String[] keyIds) {
+		if(keyIds==null || keyIds.length<1) return true;
+		String condition = "";
+		for(int i=0;i<keyIds.length;i++){
+			condition+=keyIds[i];
+			if(i!=keyIds.length-1){
+				condition+=",";
+			}
+		}
+		String sql = "delete from feos_weekly where key_id in("+condition+")";
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0) return true;
+		return false;
+	}
+	public List<WeeklyEntity> getReports(String userAccount,String reportTime,String userName) {
+		List<WeeklyEntity> list = null;
+		//String sql = "select * from feos_weekly where user_account='"+userAccount+"'";
+		String sql = "select * from feos_weekly where (user_account='"+userAccount+"' or user_account in(select observable_account FROM feos_weekly_rel WHERE observer_account='"+userAccount+"'))";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += "and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql += "and user_name like '%"+userName+"%'";
+		}
+		
+		sql+=" ORDER BY user_name,report_time desc,report_weekNum desc";
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        return list;
+	}
+	/**
+	 * 分页查询周报
+	 * @param userAccount
+	 * @param reportTime
+	 * @param userName
+	 * @return
+	 */
+	public Paginator getReportsForPage(String userAccount,String reportTime,String userName,int currentPage,int pageSize) {
+		List<WeeklyEntity> list = null;
+		//String sql = "select * from feos_weekly where user_account='"+userAccount+"'";
+		String sql = "select * from feos_weekly where (user_account='"+userAccount+"' or user_account in(select observable_account FROM feos_weekly_rel WHERE observer_account='"+userAccount+"'))";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += "and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql += "and user_name like '%"+userName+"%'";
+		}
+		
+		sql+=" ORDER BY user_name,report_time desc,report_weekNum desc";
+        Paginator page = baseDao.queryPageBySQLForBeans(sql, currentPage, pageSize, WeeklyEntity.class);
+        return page;
+	}
+	public boolean updateReports(String keyId,String reportTime,String weekNum, String workContent,
+			String questionSuggestion, String nextWeekPlain) {
+		String sql = "update feos_weekly set report_time='"+reportTime+"', report_weekNum ="+weekNum+" ,work_content = '"+workContent+"',question_suggestion = '"+questionSuggestion+"',nextWeek_plain = '"+nextWeekPlain+"' where key_id="+keyId;
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0)return true;
+		return false;
+	}
+	public boolean addObservable(String observerAccount,String observableAccount) {
+		String sql = "insert into feos_weekly_rel(observer_account,observable_account) values('"+observerAccount+"','"+observableAccount+"')";
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0)return true;
+		return false;
+	}
+
+
+	public boolean deleteObservable(String observerAccount,String observableAccount) {
+		String sql = "delete from feos_weekly_rel where observer_account='"+observerAccount+"' and observable_account='"+observableAccount+"'";
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0)return true;
+		return false;
+	}
+
+	public WeeklyEntity getReport(String keyId) {
+		if(StringUtils.isEmpty(keyId)) return null;
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where key_id="+keyId;
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        if(list !=null && !list.isEmpty()){
+        	return list.get(0);
+        }
+		return null;
+	}
+
+	public List getReportRelByObserver(
+			String observerAccount) {
+		List list = null;
+		String sql = "SELECT observable_account FROM feos_weekly_rel WHERE observer_account='"+observerAccount+"'";
+        list = baseDao.queryBySQL(sql);
+		return list;
+	}
+
+	public boolean saveObservable(String observer, String[] observable) {
+		String sql = "delete from feos_weekly_rel where observer_account='"+observer+"'";
+		try{
+			int flag = baseDao.updateBySQL(sql);
+			if(flag>=0)
+			for(int i=0;i<observable.length;i++){
+				if(!StringUtils.isEmpty(observer)&&null!=observable[i]){
+					String inserSql = "insert into feos_weekly_rel(observer_account,observable_account) values('"+observer+"','"+observable[i]+"')";
+					int _flag = baseDao.updateBySQL(inserSql);
+					
+				}
+				
+			}
+		}catch(Exception e){
+			logger.error("保存周报查看人与被查看人关联数据异常",e);
+		}
+
+		return true;
+	}
+
+	public List<WeeklyEntity> getAllReports(String dept, String reportTime,String userName) {
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where department='"+dept+"'";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += " and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql+="and user_name like '%"+userName+"%'";
+		}
+		sql+= "  ORDER BY user_name,report_time desc,report_weekNum desc";
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        return list;
+	}
+
+	/**
+	 * 分页查询全部周报
+	 * @param dept
+	 * @param reportTime
+	 * @param userName
+	 * @param currentPage
+	 * @param pageSize
+	 * @return
+	 */
+	public Paginator getAllReportsForPage(String dept, String reportTime,String userName,int currentPage,int pageSize) {
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where department='"+dept+"'";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += " and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql+="and user_name like '%"+userName+"%'";
+		}
+		sql+= "  ORDER BY user_name,report_time desc,report_weekNum desc";
+		Paginator page = baseDao.queryPageBySQLForBeans(sql, currentPage, pageSize, WeeklyEntity.class);
+        return page;
+	}
+	public WeeklyEntity getReport(String weekReportNum, String reportTime,
+			String userAccount) {
+		WeeklyEntity result = null;
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where user_account='"+userAccount+"' and report_time='"+reportTime+"' and report_weekNum="+weekReportNum;
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        if(list!=null&&!list.isEmpty()){
+        	result = list.get(0);
+        }
+        return result;
+	}
+}
+
+				</pre>
+			</div>
+		</div>
+				<div class="fhui-scroll" style="width:800px;height:600px;border:1px solid #E9FBE4;">
+
+			<div>
+				<pre>
+					package com.feitian.business.dao;
+
+import java.util.Date;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.feitian.business.entity.StaffEntity;
+import com.feitian.business.entity.WeeklyEntity;
+import com.feitian.system.common.CalendarUtils;
+import com.feitian.system.common.Paginator;
+import com.feitian.system.common.StringUtils;
+import com.feitian.system.hibernate.jpa.dao.HibernateJpaDao;
+
+/**
+ * 工作周报数据访问
+ * @author yangwei
+ * 时间：2014年4月1日 11:41:59
+ *
+ */
+@Repository
+public class WeeklyDao {
+	public static final Logger logger = Logger.getLogger(WeeklyDao.class);
+	@Autowired
+	private HibernateJpaDao baseDao;
+	@Autowired
+	private StaffDao staffDao;
+	public boolean addReport(String userAccount,String reportTime,String weekNum, String workContent,
+			String questionSuggestion, String nextWeekPlain) {
+		
+		List<StaffEntity> staffList = staffDao.getStaffByAccount(userAccount);
+		StaffEntity s = (StaffEntity)staffList.get(0);
+		
+		WeeklyEntity report = new WeeklyEntity();
+		report.setDepartment(s.getDept());
+		report.setReportTime(reportTime);
+		report.setReportWeekNum(weekNum+"");
+		report.setUserAccount(userAccount);
+		report.setUserName(s.getStaffName());
+		report.setWorkContent(workContent);
+		report.setQuestionSuggestion(questionSuggestion);
+		report.setNextWeekPlain(nextWeekPlain);
+		report.setAddTime(CalendarUtils.StringToDate(CalendarUtils.DateToString(new Date(), "yyyy-MM-dd") , "yyyy-MM-dd"));
+		try{
+			baseDao.add(report);
+		}catch(Exception e){
+			return false;
+		}
+		
+		return true;
+	}
+	public boolean deleteReports(String[] keyIds) {
+		if(keyIds==null || keyIds.length<1) return true;
+		String condition = "";
+		for(int i=0;i<keyIds.length;i++){
+			condition+=keyIds[i];
+			if(i!=keyIds.length-1){
+				condition+=",";
+			}
+		}
+		String sql = "delete from feos_weekly where key_id in("+condition+")";
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0) return true;
+		return false;
+	}
+	public List<WeeklyEntity> getReports(String userAccount,String reportTime,String userName) {
+		List<WeeklyEntity> list = null;
+		//String sql = "select * from feos_weekly where user_account='"+userAccount+"'";
+		String sql = "select * from feos_weekly where (user_account='"+userAccount+"' or user_account in(select observable_account FROM feos_weekly_rel WHERE observer_account='"+userAccount+"'))";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += "and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql += "and user_name like '%"+userName+"%'";
+		}
+		
+		sql+=" ORDER BY user_name,report_time desc,report_weekNum desc";
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        return list;
+	}
+	/**
+	 * 分页查询周报
+	 * @param userAccount
+	 * @param reportTime
+	 * @param userName
+	 * @return
+	 */
+	public Paginator getReportsForPage(String userAccount,String reportTime,String userName,int currentPage,int pageSize) {
+		List<WeeklyEntity> list = null;
+		//String sql = "select * from feos_weekly where user_account='"+userAccount+"'";
+		String sql = "select * from feos_weekly where (user_account='"+userAccount+"' or user_account in(select observable_account FROM feos_weekly_rel WHERE observer_account='"+userAccount+"'))";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += "and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql += "and user_name like '%"+userName+"%'";
+		}
+		
+		sql+=" ORDER BY user_name,report_time desc,report_weekNum desc";
+        Paginator page = baseDao.queryPageBySQLForBeans(sql, currentPage, pageSize, WeeklyEntity.class);
+        return page;
+	}
+	public boolean updateReports(String keyId,String reportTime,String weekNum, String workContent,
+			String questionSuggestion, String nextWeekPlain) {
+		String sql = "update feos_weekly set report_time='"+reportTime+"', report_weekNum ="+weekNum+" ,work_content = '"+workContent+"',question_suggestion = '"+questionSuggestion+"',nextWeek_plain = '"+nextWeekPlain+"' where key_id="+keyId;
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0)return true;
+		return false;
+	}
+	public boolean addObservable(String observerAccount,String observableAccount) {
+		String sql = "insert into feos_weekly_rel(observer_account,observable_account) values('"+observerAccount+"','"+observableAccount+"')";
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0)return true;
+		return false;
+	}
+
+
+	public boolean deleteObservable(String observerAccount,String observableAccount) {
+		String sql = "delete from feos_weekly_rel where observer_account='"+observerAccount+"' and observable_account='"+observableAccount+"'";
+		int flag = baseDao.updateBySQL(sql);
+		if(flag>0)return true;
+		return false;
+	}
+
+	public WeeklyEntity getReport(String keyId) {
+		if(StringUtils.isEmpty(keyId)) return null;
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where key_id="+keyId;
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        if(list !=null && !list.isEmpty()){
+        	return list.get(0);
+        }
+		return null;
+	}
+
+	public List getReportRelByObserver(
+			String observerAccount) {
+		List list = null;
+		String sql = "SELECT observable_account FROM feos_weekly_rel WHERE observer_account='"+observerAccount+"'";
+        list = baseDao.queryBySQL(sql);
+		return list;
+	}
+
+	public boolean saveObservable(String observer, String[] observable) {
+		String sql = "delete from feos_weekly_rel where observer_account='"+observer+"'";
+		try{
+			int flag = baseDao.updateBySQL(sql);
+			if(flag>=0)
+			for(int i=0;i<observable.length;i++){
+				if(!StringUtils.isEmpty(observer)&&null!=observable[i]){
+					String inserSql = "insert into feos_weekly_rel(observer_account,observable_account) values('"+observer+"','"+observable[i]+"')";
+					int _flag = baseDao.updateBySQL(inserSql);
+					
+				}
+				
+			}
+		}catch(Exception e){
+			logger.error("保存周报查看人与被查看人关联数据异常",e);
+		}
+
+		return true;
+	}
+
+	public List<WeeklyEntity> getAllReports(String dept, String reportTime,String userName) {
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where department='"+dept+"'";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += " and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql+="and user_name like '%"+userName+"%'";
+		}
+		sql+= "  ORDER BY user_name,report_time desc,report_weekNum desc";
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        return list;
+	}
+
+	/**
+	 * 分页查询全部周报
+	 * @param dept
+	 * @param reportTime
+	 * @param userName
+	 * @param currentPage
+	 * @param pageSize
+	 * @return
+	 */
+	public Paginator getAllReportsForPage(String dept, String reportTime,String userName,int currentPage,int pageSize) {
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where department='"+dept+"'";
+		if(!StringUtils.isEmpty(reportTime)){
+			sql += " and report_time='"+reportTime+"'";
+		}
+		if(!StringUtils.isEmpty(userName)){
+			sql+="and user_name like '%"+userName+"%'";
+		}
+		sql+= "  ORDER BY user_name,report_time desc,report_weekNum desc";
+		Paginator page = baseDao.queryPageBySQLForBeans(sql, currentPage, pageSize, WeeklyEntity.class);
+        return page;
+	}
+	public WeeklyEntity getReport(String weekReportNum, String reportTime,
+			String userAccount) {
+		WeeklyEntity result = null;
+		List<WeeklyEntity> list = null;
+		String sql = "select * from feos_weekly where user_account='"+userAccount+"' and report_time='"+reportTime+"' and report_weekNum="+weekReportNum;
+        list = baseDao.queryBySQLForBeans(sql, WeeklyEntity.class);
+        if(list!=null&&!list.isEmpty()){
+        	result = list.get(0);
+        }
+        return result;
+	}
+}
+
+				</pre>
+			</div>
+		</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+		<script src="jquery.mousewheel.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+
+
+  </body>
+</html>

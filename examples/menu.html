@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+	    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+  </head>
+  <style>
+	.fhui-menu{
+	display: block;
+    margin: 0;
+    outline: medium none;
+	list-style: none;
+    padding: 2px;
+	border:1px solid #A3C0E8;
+	position:relative;
+	width:150px;
+}
+.fhui-menu .fhui-menu-item{
+	list-style-image:url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+}
+.fhui-menu .fhui-menu{
+    position: absolute;
+}
+.fhui-menu-item a,.fhui-menu-group a{
+	display: block;
+    font-weight: normal;
+    line-height: 1.5;
+    min-height: 0;
+    padding: 2px 0.4em;
+    text-decoration: none;
+	position:relative;
+	padding-left:25px;
+	
+}
+.fhui-menu-group a{
+	padding-right:25px;
+}
+.fhui-menu-item ,.fhui-menu-group{
+	cursor:pointer;
+}
+.fhui-menu-item .fhui-icon{
+	left: 0.2em;
+    position: absolute;
+    top: 0.2em;
+}
+.fhui-menu-group .fhui-icon{
+	right: 0.2em;
+    position: absolute;
+    top: 0.2em;
+}
+.fhui-menu-item a:hover,.fhui-menu-group a:hover{
+	background-color:#C8E8DA !important;
+}
+
+
+  </style>
+  		<style type="text/css">
+			.fhui-menu{
+				width:150px;
+			}
+		</style> 
+  <body>
+
+			<div style="margin:150px;">
+		<ul class="fhui-menu">
+			<li><a href="#"><span class="ui-icon ui-icon-disk"></span>保存</a></li>
+			<li><a href="#"><span class="ui-icon ui-icon-zoomin"></span>缩小</a></li>
+			<li><a href="#"><span class="ui-icon ui-icon-zoomout"></span>放大</a></li>
+			<li><a href="#"><span class="ui-icon ui-icon-print"></span>打印...</a>
+								<ul>
+					<li><a href="#"><span class="ui-icon ui-icon-seek-start"></span>上一曲</a></li>
+					<li><a href="#"><span class="ui-icon ui-icon-stop"></span>停止播放</a></li>
+					<li><a href="#"><span class="ui-icon ui-icon-play"></span>开始播放</a></li>
+					<li><a href="#"><span class="ui-icon ui-icon-seek-end"></span>下一曲</a></li>
+					<li>
+						<a href="#">测试</a>
+						<ul>
+							<li><a href="#"><span class="ui-icon ui-icon-seek-start"></span>上一曲</a></li>
+							<li><a href="#"><span class="ui-icon ui-icon-stop"></span>停止播放</a></li>
+							<li><a href="#"><span class="ui-icon ui-icon-play"></span>开始播放</a></li>
+							<li><a href="#"><span class="ui-icon ui-icon-seek-end"></span>下一曲</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#">Playback</a>
+				<ul>
+					<li><a href="#"><span class="ui-icon ui-icon-seek-start"></span>上一曲</a></li>
+					<li><a href="#"><span class="ui-icon ui-icon-stop"></span>停止播放</a></li>
+					<li><a href="#"><span class="ui-icon ui-icon-play"></span>开始播放</a></li>
+					<li><a href="#"><span class="ui-icon ui-icon-seek-end"></span>下一曲</a></li>
+					<li>
+						<a href="#">测试</a>
+						<ul>
+							<li><a href="#"><span class="ui-icon ui-icon-seek-start"></span>上一曲</a></li>
+							<li><a href="#"><span class="ui-icon ui-icon-stop"></span>停止播放</a></li>
+							<li><a href="#"><span class="ui-icon ui-icon-play"></span>开始播放</a></li>
+							<li><a href="#"><span class="ui-icon ui-icon-seek-end"></span>下一曲</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+		</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+  </body>
+</html>

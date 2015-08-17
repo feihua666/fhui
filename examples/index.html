@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui文档</title>
+    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+	<div class="fh-docs-box">
+		<div class="fh-docs-notice">
+			<h1>feihuaui文档</h1>
+			设置全局 CSS 样式；基本的 HTML 元素均可以通过 class 设置样式并得到增强效果
+		</div>
+		<h1>概览</h1>
+		<hr class="fh-docs-hr"/>
+		<p class="fh-docs-p">
+			feihuaui是基于bootstrap（中文网<a href="http://www.bootcss.com/">http://www.bootcss.com/</a>）构建的，运行在node.js平台之上，bootstrap的强大深深吸引了我，其从基础到高级非常全面且文档通俗易懂。是从进阶到高级的好帮手。相关基础内容请查看bootsrap官网。
+		</p>
+		<h1>关于feihuaui</h1>
+		<p class="fh-docs-p">
+			fhui 是一套由feihua个人开发供使用的jquery框架(借鉴和使用bootsrap)。由于是个人开发，鉴于经验与思考的不足，其中肯定会有而且有很多低级的bug，本人作者先在这里表示歉意！<br/>
+	  如果您有什么好的思路或建议，我非常欢迎参加讨论，以优化本ui，以达到更好的使用与体验。<br/>
+	  本ui旨在：不求大，不求全，只求实用与简单！<br/>
+	  添加和修饰bootstrap中的相关样式和类的修改以便适应我个人认为比较和谐和易于使用的思维。<br/>
+	  我会尽量使方法及使用注释更加的详细，让您轻松的能够看懂！<br/>
+	  记得relasafe权限的开发团队的目的是简化程序员工作，把大量的时间拿来陪老婆与孩子。<br/>
+	  为了节省大家的时间，大家可以随时提意见与建议。<br/>
+	  让我们共同成长。。。共同享受时光。。。<br/>
+	  我们可以做的不好，但我们要有态度！<br/>
+	  作者：feihua<br/>
+	  QQ:  654593600	925300129<br/>
+	  着手日期：2014年3月31日<br/>
+	  现在日期：2015年1月10日<br/>
+		</p>
+		<h1>按钮（button）</h1>
+		<div>
+			<button class="fhui-button">Default</button>
+			<input type="button" class="fhui-button" value="Default"/>
+			<input type="button" class="fhui-button" value="disabled" disabled="disabled"/>
+		</div>
+		<h1>输入文本框（input text）</h1>
+		<div>
+			<input type="text" class="fhui-input" value="Default"/>
+		</div>
+		<h1>上传控件（input file）</h1>
+		<div>
+			<input id="enable" type="file" class="fhui-form-file" value="Default"/>
+			<button class="fhui-button" onclick="$('#enable').fhuiFormFile('enable')">enable</button>
+			<button class="fhui-button" onclick="$('#enable').fhuiFormFile('disable')">disable</button>
+			<button class="fhui-button" onclick="findSize()">大小</button>
+			<button class="fhui-button" onclick="findName()">名称</button>
+			<button class="fhui-button" onclick="findExtension()">扩展名</button>
+			<button class="fhui-button" onclick="fileclear()">清空</button>
+			  <script>
+
+				function findSize() {
+					if($('#enable').val() == '') {alert('请选择一个文件');return ;}
+					alert($('#enable').fhuiFormFile('info').size)
+				}
+				function findName() {
+					if($('#enable').val() == '') {alert('请选择一个文件');return ;}
+					alert($('#enable').fhuiFormFile('info').name)
+				}
+				function findExtension() {
+					if($('#enable').val() == '') {alert('请选择一个文件');return ;}
+					alert($('#enable').fhuiFormFile('info').extension)
+				}
+				function fileclear() {
+					if($('#enable').val() == '') {alert('请选择一个文件');return ;}
+					$('#enable').fhuiFormFile('clear')
+				}
+			  </script>
+		</div>
+		<h1>1、sticky 固定</h1>
+		<div>
+			<a href="sticky.html">sticky.html</a>
+		</div>
+		<h1>2、position 位置</h1>
+		<div>
+			<a href="position.html">position.html</a>
+		</div>
+		<h1>3、draggable 拖拽</h1>
+		<div>
+			<a href="draggable.html">draggable.html</a>
+		</div>
+		<h1>4、droppable 放置</h1>
+		<div>
+			<a href="droppable.html">droppable.html</a>
+		</div>
+		<h1>5、resizable 改变大小</h1>
+		<div>
+			<a href="resizable.html">resizable.html</a>
+		</div>
+		<h1>6、tip 提示工具</h1>
+		<div>
+			<a href="tip.html">tip.html</a>
+		</div>
+		<h1>7、scroll 滚动条</h1>
+		<div>
+			<a href="scroll.html">scroll.html</a>
+		</div>
+		<h1>8、layout 布局</h1>
+		<div>
+			<a href="layout.html">layout.html</a>
+		</div>
+		<h1>9、menu 菜单</h1>
+		<div>
+			<a href="menu.html">menu.html</a>
+		</div>
+		<h1>10、contextmenu 上下文菜单</h1>
+		<div>
+			<a href="contextmenu.html">contextmenu.html</a>
+		</div>
+		<h1>11、message 消息提示</h1>
+		<div>
+			<a href="message.html">message.html</a>
+		</div>
+		<h1>12、paginator 分页</h1>
+		<div>
+			<a href="paginator.html">paginator.html</a>
+		</div>
+		<h1>13、dialog 窗口</h1>
+		<div>
+			<a href="dialog.html">dialog.html</a>
+		</div>
+	</div>
+	<div style="height:100px;"></div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+  </body>
+</html>

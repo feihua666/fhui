@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+  </head>
+  <style>
+*,*:after, *:before {
+    box-sizing: border-box;
+}
+	.fhui-sticky-ghost,.fhui-sticky-ghost td{
+				background-color:green;
+			}
+
+			.col1,.col2,.col3,.col4{
+				width:25%;
+			}
+
+  </style>
+
+  <body>
+		<div class="scroll">
+			<div class="content">
+				<div id="divbottom">sdfsdfsdsfdsdfsdsf</div>
+				<table id="table">
+					<tr id="test"  class="fhui-sticky" data-options='{"position":{"top":100}}'>
+						<td class="col1" >测试文字2测试</td>
+						<td class="col2" >tdtdt dtd tdtd td tdtd</td>
+						<td class="col3" >tdtdt dtd tdtdtdt</td>
+						<td class="col4" >tdtdt dtd dt dtdtd</td>
+					</tr>
+					
+					<tr   class="fixed">
+						<td class="col1">tdtd tdt dtdtd</td>
+						<td class="col2">tdtdtdtdtd  dtdtd</td>
+						<td class="col3">tdtdtdt dtdt dt tdtd</td>
+						<td class="col4">tdtd tdt dtdt tdtdtd</td>
+					</tr>
+						
+					
+					<tr>
+						<td class="col1">tdtd tdd</td>
+						<td class="col2">tdtdtdtdtdt dtdt dtdtd</td>
+						<td class="col3">tdtdtdt dtdt dtdt dtd tdtd</td>
+						<td class="col4">tdtd tdt dtdtd tdtdtd</td>
+					</tr>
+					
+					<tr>
+						<td class="col1">tdtd tdt dttdtd</td>
+						<td class="col2">tdtdtdtdtd tddt dtdtd</td>
+						<td class="col3">tdtdtdt dtddtdt dtd tdtd</td>
+						<td class="col4">tdtd tdt dtdt dtd tdtdtd</td>
+					</tr>
+					
+					<tr>
+						<td class="col1">tdtd tdt dttd</td>
+						<td class="col2">tdtdtdtdtdtdtdt dtdt dtdtd</td>
+						<td class="col3">tdtdtdt dtdt dtdt dt dtdt dtd tdtd</td>
+						<td class="col4">测试文字2文字2测试文字2</td>
+					</tr>
+					
+					<tr>
+						<td class="col1">测试文字2测字2测试文字2</td>
+						<td class="col2">测试文字2测2测试文字2测试文字2</td>
+						<td class="col3">测试文字试文字2测试文字2</td>
+						<td class="col4">测试文字2测试文字2测试文字2</td>
+					</tr>
+				</table>
+				<button onclick="$('#test').fhuiSticky('refresh');">刷新</button>
+				<button onclick="$('#test').fhuiSticky('destroy');">销毁</button>
+				<p>测试文字2测试文字2测试文字2测试文字2测试文字2测试文字2</p>
+				<p>测试文字3</p>
+				<p>测试文字4</p>
+				<p>测试文字5</p>
+				<p>测试文字6</p>
+				<p>测试文字7</p>
+				
+				<p>测试文字</p>
+				<p>测试文字</p>
+				<p>测试文字</p>				<p>测试文字3</p>
+				<p>测试文字4</p>
+				<p>测试文字5</p>
+				<p>测试文字6</p>
+				<p>测试文字7</p>
+				<p>测试文字8</p>
+				<p>测试文字9</p>
+				<p>测试文字0</p>
+				<p>测试文字1</p>
+				<p>测试文字2</p>
+				<p>测试文字3</p>
+				<p>测试文字4</p>
+				<p>测试文字5</p>
+				<p>测试文字6</p>
+				<p>测试文字7</p>
+				<p>测试文字8</p>
+				<p>测试文字9</p>
+				<p>测试文字0</p>
+				<p>测试文字</p>
+				<p>测试文字</p>
+				<p>测试文字</p>
+				<p>测试文字</p>
+				<p>测试文字</p>
+				<p>测试文字</p>				<p>测试文字3</p>
+				<p>测试文字4</p>
+				<p>测试文字5</p>
+				<p>测试文字6</p>
+				<p>测试文字7</p>
+				<p>测试文字8</p>
+				<p>测试文字9</p>
+				<p>测试文字</p>
+				<p>底部</p>
+			</div>
+		</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+  </body>
+</html>

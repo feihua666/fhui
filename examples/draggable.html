@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+
+    <!-- Bootstrap -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  <iframe src="http://www.baidu.com" style="width:500px;height:400px;left:600px;top:400px;position:absolute;"></iframe>
+	<div id="contener" class="fhui-draggable" style="border:red 1px solid;top:0;width:500px;height:300px;position:absolute;" data-options = "handle:'.handle'">
+	contener
+	<div class="handle" style="border:red 1px solid;width:100%;">handle only me can handle the drag</div>
+	</div>
+	
+	<div id="contener1" class="fhui-draggable" style="border:blue 1px solid;top:600px;width:100px;height:100px;position:absolute;" data-options = "revert:true">
+	contener1<br/>
+	revert:true
+	</div>
+	
+	<div id="contener2" class="fhui-draggable" style="border:green 1px solid;left:400px;width:100px;height:100px;position:absolute;">
+	contener2<br/>
+	defalut options
+	</div>
+	
+	<div id="contener3" class="fhui-draggable" style="border:gray 1px solid;left:800px;width:100px;height:100px;position:absolute;" data-options = "revert:true,proxy:true">
+	contener3<br/>
+	"revert:true,proxy:true"
+	</div>
+	<div id="contener4" class="fhui-draggable" style="border:gray 1px solid;left:800px;top:200px;width:100px;height:100px;position:absolute;z-index:500;" data-options = "iframeFix:true">
+	contener4 我在iframe上自由拖拽<br/>
+	iframeFix:true
+	</div>
+		<div id="contener5" class="fhui-draggable" style="border:gray 1px solid;left:300px;top:200px;width:100px;height:100px;position:absolute;" data-options = "axis:'x'">
+	contener5 我只在x轴上移动<br/>
+	axis:'x'
+	<button onclick="$('#contener5').fhuiDraggable('disable');">禁用拖拽</button>
+	<button onclick="$('#contener5').fhuiDraggable('enable');">启用拖拽</button>
+	</div>
+	<div id="contener6" style="border:gray 1px solid;left:300px;top:400px;width:100px;height:100px;position:absolute;">
+	contener6<br/>
+	<span>x:null,y:null</span>
+	<a></a>
+	</div>
+	<div id="contener7" style="border:gray 1px solid;left:100px;top:400px;width:100px;height:100px;position:absolute;">
+	contener7<br/>
+	我只能在window中移动
+	</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+		  <script>
+	$('#contener6').fhuiDraggable({
+		start : function(event,target){
+			console.log('dragstart');
+			console.log('outerhtml',this.prop('outerHTML'));
+		},
+		drag : function(event,target){
+			$('span',this).text('x:' + event.pageX + ',y:' + event.pageY)
+		},
+		stop : function(event,target){
+			$('>a',this).html('dragstoped');
+		}
+	});
+		var win = $(window);
+		$('#contener7').fhuiDraggable({
+		drag : function(event,target){
+			var pos = target.position();
+			if(pos.left<=win.scrollLeft()){
+				pos.left = win.scrollLeft();
+			}
+			if(pos.left+target.width()>=win.width()+win.scrollLeft()){
+				pos.left = win.width()+win.scrollLeft() - target.width();
+			}
+			if(pos.top<=win.scrollTop()){
+				pos.top = win.scrollTop();
+			}
+			if(pos.top+target.height()>=win.height()+win.scrollTop()){
+				pos.top = win.height()+win.scrollTop() - target.height();
+			}
+			target.css(pos);
+		}
+
+	})
+  </script>
+  </body>
+</html>

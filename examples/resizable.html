@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui文档</title>
+    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <style>
+*,*:after, *:before {
+    box-sizing: border-box;
+}
+.fhui-resizable-helper{
+	border:dashed  blue 1px;
+}
+  </style>
+
+  <body style="position:absolute;left:0;top:0;right:0;bottom:0;cusor:  auto">
+
+	<div id="contener1" class="fhui-resizable" style="border:blue 1px solid;left:0px;width:100px;height:100px;position:relative;" data-options = 'handles:"e,s,se,w"'>
+	contener1
+	<br/>
+	data-options = 'handles:"e,s,se"'
+		
+	</div>
+	<div id="contener2" class="fhui-resizable fhui-draggable" style="border:green 1px solid;left:200px;width:100px;height:100px;position:absolute;">
+		
+	contener2
+	<br/>
+	data-options defalut
+	</div>
+	<div id="contener3" class="fhui-resizable" style="border:gray 1px solid;left:400px;width:100px;height:500px;position:absolute;" data-options = 'handles:"all",helper:true,minWidth:10,maxWidth:200,maxHeight:550,radio:true'>
+	contener3
+	<br/>
+	data-options = 'handles:"all",helper:true,minWidth:10,maxWidth:200,maxHeight:550,radio:true'
+	</div>
+		<div id="contener4" class="fhui-resizable" style="border:gray 1px solid;left:600px;width:100px;height:500px;position:absolute;" data-options = 'handles:"all",minWidth:10,maxWidth:200,maxHeight:550'>
+	contener4
+	<br/>
+	data-options = 'handles:"all",helper:true,minWidth:10,maxWidth:200,maxHeight:550'
+	</div>
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+	  <script>
+
+  </script>
+  </body>
+</html>

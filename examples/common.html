@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+	    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>你好，世界！</h1>
+	<button class="fhui-button"  onclick="fhui.disableSelection()">禁用文本选择</button>
+	<button class="fhui-button"  onclick="fhui.enableSelection()">启用文本选择</button>
+	<button class="fhui-button"  onclick="fhui.clearSelection()">清除文本选择</button>
+	
+	<div>sfsdsfdfsdsdsfsd</div>
+	<button class="fhui-button"  onclick="mytimer()">5秒后执行</button>
+	<span id="timer"></span>
+	<script>
+		function mytimer(){
+			var time = 0;
+			
+			fhui.timer(function(){
+				time++;
+				$('#timer').text(time)
+			},1000,5);
+			fhui.timer(function(){
+				alert('time over');
+			},5000,1);
+		}
+	</script>
+	<button class="fhui-button"  onclick="alert(fhui.zIndex())">fhui zIndex</button>
+	<br/>
+	<button class="fhui-button"  onclick="getData('testdata1')">getData-1</button>
+	<button class="fhui-button"  onclick="getData('testdata2')">getData-2</button>
+	<button class="fhui-button"  onclick="getData('testdata3')">getData-3</button>
+	<button class="fhui-button"  onclick="getData4('testdata4')">getData-4</button>
+	<code>
+	<br/>
+		&lt;div data-options="{test1:'test1'}"&gt;1（习惯写法）&lt;/div&gt;
+		<br/>
+		&lt;div data-options="test2:'test2'"&gt;2（非正常写法）&lt;/div&gt;
+		<br/>
+		&lt;div data-options='{"test1":"test1"}'&gt;3（最正确标准写法，推荐）&lt;/div&gt;
+		<br/>
+	</code>
+	<div id="testdata1" data-options="{test:'test1'}">1（习惯写法）</div>
+		<div id="testdata2" data-options="test:'test2'">2（非正常写法）</div>
+		<div id="testdata3" data-options='{"test":"test3"}'>3（最正确标准写法，推荐）</div>
+		<div id="testdata4" data-config='{"test":"test4"}'>4（最正确标准写法，推荐）</div>
+	<script>
+
+		function getData(id){
+			alert(fhui.getData('#'+id).test)
+		}
+			function getData4(id){
+				fhui.options = "config";
+			alert(fhui.getData('#'+id).test)
+		}
+	</script>
+	
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+  </body>
+</html>

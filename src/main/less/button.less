@@ -1,0 +1,31 @@
+/* 按键button 样式 */
+.buttonDisabled(){
+	.disabled;
+	box-shadow:none;
+	opacity: 0.7;
+	background-color: #fff;
+	background-image:none;
+}
+.fhui-button{
+	display:inline-block;//行内块
+	user-select:none;//禁用选中文本
+	cursor:pointer;//鼠标手形指针
+	white-space: nowrap;//禁止文本换行
+	text-align: center;//文本水平居中
+	touch-action: manipulation;//触控允许缩放
+	.font-size;//14px
+	font-weight: normal;//400
+	line-height: @line-height-base;
+	.padding-size;//6px 12px 6px 12px
+	border: 1px solid transparent;
+	&[disabled]{
+		.buttonDisabled;
+		&:hover,&:focus,&:active{
+			.buttonDisabled;
+			
+		}
+		&:active{
+			top:0;
+		}
+	}
+}

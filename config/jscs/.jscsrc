@@ -1,0 +1,34 @@
+{
+  "disallowEmptyBlocks": true,//不允许空括号，catch的空括号除外
+  "disallowKeywords": ["with"],//不允许使用with关键词
+  "disallowMixedSpacesAndTabs": true,//不允许使用空格+tab的方式缩进
+  "disallowMultipleLineStrings": true,
+  "disallowMultipleVarDecl": true,
+  "disallowQuotedKeysInObjects": "allButReserved",
+  "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
+  "disallowSpaceBeforeBinaryOperators": [","],
+  "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+  "disallowSpacesInNamedFunctionExpression": { "beforeOpeningRoundBrace": true },
+  "disallowSpacesInsideArrayBrackets": true,
+  "disallowSpacesInsideParentheses": true,
+  "disallowTrailingComma": true,
+  "disallowTrailingWhitespace": true,
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "requireCapitalizedConstructors": true,
+  "requireCommaBeforeLineBreak": true,
+  "requireDotNotation": true,
+  "requireLineFeedAtFileEnd": true,
+  "requireSpaceAfterBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", "<", ">=", "<="],
+  "requireSpaceAfterKeywords": ["if", "else", "for", "while", "do", "switch", "return", "try", "catch"],
+  "requireSpaceAfterLineComment": true,
+  "requireSpaceBeforeBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", "<", ">=", "<="],
+  "requireSpacesInAnonymousFunctionExpression": { "beforeOpeningCurlyBrace": true, "beforeOpeningRoundBrace": true },
+  "requireSpacesInConditionalExpression": true,
+  "requireSpacesInFunctionDeclaration": { "beforeOpeningCurlyBrace": true },
+  "requireSpacesInFunctionExpression": { "beforeOpeningCurlyBrace": true },
+  "requireSpacesInNamedFunctionExpression": { "beforeOpeningCurlyBrace": true },
+  "requireSpacesInsideObjectBrackets": "allButNested",
+  "validateIndentation": "\t",
+  //"validateLineBreaks": "LF",
+  "validateQuoteMarks": "'"
+}

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+  </head>
+  <style>
+*,*:after, *:before {
+    box-sizing: border-box;
+}
+  </style>
+
+  <body>
+	<div style="border:red 1px solid;width:200px;height:200px;position:absolute;" class="fhui-position" data-options = "at:'center',my:'center',of:'#contener'"></div>
+	<div id="contener" style="border:red 1px solid;width:500px;height:300px;position:absolute;" data-options = "at:'center',my:'center'"></div>
+	
+	<div id="contener1" style="border:blue 1px solid;width:100px;height:100px;position:absolute;"></div>
+	<div id="contener2" style="border:green 1px solid;width:100px;height:100px;position:absolute;"></div>
+	<div id="contener3" style="border:gray 1px solid;width:100px;height:100px;position:absolute;"></div>
+	
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+	  <script>
+  $(function(){
+	$(document).on('click',function(e){
+		$('#contener1').fhuiPosition({
+			of:e,
+			my:'left top',
+			collision:'flip'
+		});
+		$('#contener2').fhuiPosition({
+			of:e,
+			my:'left top',
+			collision:function(position){
+				position.left = Math.round(Math.random()*500);
+				position.top = Math.round(Math.random()*500);
+			}
+		});
+		$('#contener3').fhuiPosition({
+			of:e,
+			my:'80 5',
+			collision:'flip'
+		});
+	})
+  })
+  </script>
+  </body>
+</html>

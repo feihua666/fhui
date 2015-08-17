@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+	    <!-- feihuaui css -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+	<link href="../build/css/feihuaui-theme.min.css" rel="stylesheet">
+	<link href="../docs/css/feihuaui-docs.min.css" rel="stylesheet">
+  </head>
+  <style>
+.fhui-message{
+	position:relative;
+	width:300px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	margin:0.25em 0;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+	opacity: 0.8;
+}
+.fhui-message-info{
+	background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #3c763d;
+}
+.fhui-message-warn{
+	background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
+.fhui-message-error{
+	background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+}
+.fhui-message-box{
+	position:fixed;
+}
+.fhui-message-header{
+	font-size:1.2em;
+}
+.fhui-message,.fhui-message-header,.fhui-message-content-container{
+	padding: 0.25em 0.5em;
+}
+.fhui-message-close{
+	position:absolute;
+	right:0.25em;
+	top:0.25em;
+	font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0.2;
+    text-shadow: 0 1px 0 #fff; 
+	font-family: "Helvetica Neue",Helvetica,Microsoft Yahei,Hiragino Sans GB,WenQuanYi Micro Hei,sans-serif;
+}
+.fhui-message-close:hover{
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.796), 0 0 10px rgba(255, 255, 255, 0.298);
+	cursor:pointer;
+}
+  </style>
+  <body>
+    <h1>你好，世界！</h1>
+	<input type="button" value="添加一条错误消息" class="fhui-button" onclick="addMessage('error')">
+	<input type="button" value="添加一条提示消息" class="fhui-button" onclick="addMessage('info')">
+	<input type="button" value="添加一条警告消息" class="fhui-button" onclick="addMessage('warn')">
+	<div class="fhui-message" data-options = "header:'header',message:'这是一个消息'">
+	</div>
+	
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+	<script src="jquery.metadata.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+	<script>
+				function addMessage(type){
+				$("<div></div>").appendTo("body").fhuiMessage({position:{right:20,bottom:20},header:'我是一个自定义标题消息',message:"异常信息，我是新加的消息，我永不消失，直到关闭",type:type,duration:0});
+			}
+		</script>
+  </body>
+</html>

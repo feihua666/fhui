@@ -1,0 +1,19 @@
+/* 按键input 样式 */
+.fhui-input{
+	display:inline-block;//行内块
+	font-weight: normal;//400
+	line-height: @line-height-base;
+	border: 1px solid transparent;
+	background-image: none;
+	height: 34px;
+	.font-size;
+	.padding-size;
+	&[disabled]{
+		.disabled;
+	}
+	&[readonly]{
+		.disabled;
+		opacity: 1;
+		background-color: #eee;
+	}
+}

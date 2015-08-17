@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>feihuaui Template</title>
+
+    <!-- Bootstrap -->
+    <link href="../build/css/feihuaui.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    	<div id="contener4" class="fhui-droppable" style="border:red 1px solid;top:200px;width:500px;height:500px;position:absolute;">contener4
+		<span></span>
+		<button onclick="$('#contener4').fhuiDroppable('disable')" >禁用</button><button onclick="$('#contener4').fhuiDroppable('enable')">启用</button>
+		<div id="contener6" class="fhui-droppable" style="border:blue 1px solid;background:red;top:200px;width:200px;height:200px;position:absolute;">contener6</div>
+	</div>
+	<div id="contener5" class="fhui-droppable" style="border:blue 1px solid;top:300px;width:200px;height:200px;position:absolute;">contener5</div>
+	<div id="contener1" class="fhui-draggable" style="border:blue 1px solid;width:100px;height:100px;position:absolute;">contener1</div>
+	<div id="contener2" class="fhui-draggable" style="border:green 1px solid;left:200px;width:100px;height:100px;position:absolute;">contener2</div>
+	<div id="contener3" class="fhui-draggable" style="border:gray 1px solid;left:400px;width:100px;height:100px;position:absolute;">contener3</div>
+	
+	<div id="message" style="border:red 1px solid;left:600px;width:100px;height:100px;position:absolute;"></div>
+	<button onclick="topee()" style="float:right;">top</button>
+
+    <!-- jQuery (necessary for feihua's JavaScript plugins) -->
+    <script src="../src/test/qunit/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../build/js/feihuaui.min.js"></script>
+	<script>
+		$('#contener4').fhuiDroppable({
+			accept:'#contener3',
+			drop : function(e,target){
+				this.html(target.html() + 'dropped')
+			},
+			drag : function(e,target){
+				this.css('background-color','gray');
+			},
+			over : function(e,target){
+				//this.html('over');
+				this.css('border-width','1px');
+			},
+			leave : function(e,target){
+				//this.html('leave');
+				this.css('border-width','1px');
+				console.log('leave')
+			},
+			stop:function(e,target){
+				this.css('background-color','white');
+			}
+		});
+		$('#contener6').fhuiDroppable({accept:'#contener3',
+			drop : function(e,target){
+				this.html(target.html() + 'dropped')
+			}});
+		$('#contener5').fhuiDroppable({accept:'#contener3',
+			drop : function(e,target){
+				this.html(target.html() + 'dropped')
+			}});
+	</script>
+
+  </body>
+</html>
