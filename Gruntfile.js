@@ -5,23 +5,23 @@
 module.exports = function (grunt) {
   'use strict';
 
-  // Ç¿ÖÆÊ¹ÓÃ Unix »»ĞĞ·û
+  // å¼ºåˆ¶ä½¿ç”¨ Unix æ¢è¡Œç¬¦
   grunt.util.linefeed = '\n';
   grunt.initConfig({
-	// ÔªĞÅÏ¢
+	// å…ƒä¿¡æ¯
     pkg: grunt.file.readJSON('package.json'),
-	//Í·ĞÅÏ¢
+	//å¤´ä¿¡æ¯
 	banner: '/*!\n' +
             ' * <%= pkg.name %> v<%= pkg.version %> (<%= pkg.maintainers[0].email %>)\n' +
             ' * Copyright 2014-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
             ' */\n',
-	//¼ì²éjqueryÊÇ·ñ´æÔÚ
+	//æ£€æŸ¥jqueryæ˜¯å¦å­˜åœ¨
     jqueryCheck: [
       'if (typeof jQuery === \'undefined\') {',
       '  throw new Error(\'<%= pkg.name %>\\\'s JavaScript requires jQuery\')',
       '}\n'
     ].join('\n'),
-	//¼ì²éjquery°æ±¾ÊÇ·ñÖ§³Ö
+	//æ£€æŸ¥jqueryç‰ˆæœ¬æ˜¯å¦æ”¯æŒ
     jqueryVersionCheck: [
       '+function ($) {',
       '  var version = $.fn.jquery.split(\' \')[0].split(\'.\')',
@@ -30,8 +30,8 @@ module.exports = function (grunt) {
       '  }',
       '}(jQuery);\n\n'
     ].join('\n'),
-	// ÒÔÏÂÊÇÈÎÎñÅäÖÃ
-	//Çå¿ÕÄ¿Â¼ÅäÖÃ
+	// ä»¥ä¸‹æ˜¯ä»»åŠ¡é…ç½®
+	//æ¸…ç©ºç›®å½•é…ç½®
     clean: {
 	  build:"build",
       js: 'build/js',
@@ -39,17 +39,17 @@ module.exports = function (grunt) {
       docs: 'docs',
 	  docs_css:"docs/css"
     },
-	//javascript Óï·¨Ğ£Ñé
+	//javascript è¯­æ³•æ ¡éªŒ
 	jshint: {
-		//²ÎÊıĞ£Ñé¹æÔò
+		//å‚æ•°æ ¡éªŒè§„åˆ™
       options: {
         jshintrc: 'config/jshint/.jshintrc'
       },
-	  //jsÔ´´úÂëĞ£Ñé
+	  //jsæºä»£ç æ ¡éªŒ
       mainjs: {
         src: 'src/main/js/*.js'
       },
-	  //²âÊÔ´úÂëĞ£Ñé
+	  //æµ‹è¯•ä»£ç æ ¡éªŒ
       testjs: {
         options: {
           jshintrc: 'config/jshint/test/.jshintrc'
@@ -64,50 +64,50 @@ module.exports = function (grunt) {
 	  }
     },
 	//Grunt task for checking JavaScript Code Style with jscs
-	//Ğ£Ñéjs´úÂëµÄ±àÂë·ç¸ñ£¬×¢ÒâÓëÉÏÃæµÄjshint²»Í¬£¨²àÖØÓï·¨£©
+	//æ ¡éªŒjsä»£ç çš„ç¼–ç é£æ ¼ï¼Œæ³¨æ„ä¸ä¸Šé¢çš„jshintä¸åŒï¼ˆä¾§é‡è¯­æ³•ï¼‰
 	jscs: {
       options: {
         config: 'config/jscs/.jscsrc'
       },
-	  //jsÔ´ÂëĞ£Ñé
+	  //jsæºç æ ¡éªŒ
       mainjs: {
         src: '<%= jshint.mainjs.src %>'
       },
-	  //²âÊÔ´úÂëĞ£Ñé
+	  //æµ‹è¯•ä»£ç æ ¡éªŒ
       testjs: {
         src: '<%= jshint.testjs.src %>'
       }
     },
-	//Æ´½Ó£¬ĞÎ³ÉÒ»¸öÎÄ¼ş£¬Éú³ÉµÄµ¥¶ÀÎÄ¼şÎªÒ»¸öÔ´Âë
+	//æ‹¼æ¥ï¼Œå½¢æˆä¸€ä¸ªæ–‡ä»¶ï¼Œç”Ÿæˆçš„å•ç‹¬æ–‡ä»¶ä¸ºä¸€ä¸ªæºç 
 	concat: {
       options: {
-	  //Í·ĞÅÏ¢
+	  //å¤´ä¿¡æ¯
         banner: '<%= banner %>\n<%= jqueryCheck %>\n<%= jqueryVersionCheck %>',
         stripBanners: false
       },
-	  //ËùÓĞjsÔ´ÂëÆ´½ÓÎªÒ»¸öÎÄ¼ş
+	  //æ‰€æœ‰jsæºç æ‹¼æ¥ä¸ºä¸€ä¸ªæ–‡ä»¶
 	  feihuauijs: {
         src: ['<%= jshint.mainjs.src %>','!src/main/js/jQuery-fhui-structure.js'],
         dest: 'build/js/<%= pkg.name %>.js'
       }
     },
-	//Ñ¹Ëõ
-	//×¢ÒâÓëÆ´½Ó²»Í¬
+	//å‹ç¼©
+	//æ³¨æ„ä¸æ‹¼æ¥ä¸åŒ
 	uglify: {
       options: {
         preserveComments: 'some'
       },
-	  //½«Æ´½ÓºÃµÄjsÔ´Âë½øĞĞÑ¹Ëõ
+	  //å°†æ‹¼æ¥å¥½çš„jsæºç è¿›è¡Œå‹ç¼©
       feihuauiMinijs: {
 		src: '<%= concat.feihuauijs.dest %>',
         dest: 'build/js/<%= pkg.name %>.min.js'
       }
 	},
-	//js µ¥Ôª²âÊÔ
+	//js å•å…ƒæµ‹è¯•
 	qunit: {
       index: 'src/test/qunit/index.html'
     },
-	//cssÏà¹Ø£¬±àÒëcssÔ´Âë
+	//cssç›¸å…³ï¼Œç¼–è¯‘cssæºç 
 	less: {
       compileCore: {
 		src: 'src/main/less/<%= pkg.name %>.less',
@@ -122,7 +122,7 @@ module.exports = function (grunt) {
         dest: 'docs/css/<%= pkg.name %>-docs.css'
 	  }
     },
-	//cssÏà¹Ø£¬´¦Àíä¯ÀÀÆ÷Ç°×º
+	//cssç›¸å…³ï¼Œå¤„ç†æµè§ˆå™¨å‰ç¼€
 	autoprefixer: {
       options: {
         browsers: [
@@ -136,38 +136,38 @@ module.exports = function (grunt) {
           'Safari >= 6'
         ]
       },
-	  //Éú³ÉµÄcss
+	  //ç”Ÿæˆçš„css
       core: {
         options: {
           map: true
         },
         src: 'build/css/<%= pkg.name %>.css'
       },
-	  //Éú³ÉµÄÖ÷Ìâcss
+	  //ç”Ÿæˆçš„ä¸»é¢˜css
       theme: {
         options: {
           map: true
         },
         src: 'build/css/<%= pkg.name %>-theme.css'
       },
-	  //ÎÄµµ
+	  //æ–‡æ¡£
 	  docs:{
 		src: 'docs/css/<%= pkg.name %>-docs.css'
 	  }
     },
-	//css´úÂë¼ì²é¹¤¾ß
+	//cssä»£ç æ£€æŸ¥å·¥å…·
 	csslint: {
       options: {
         csslintrc: 'config/csslint/.csslintrc'
       },
-	  //Éú³ÉµÄcss
+	  //ç”Ÿæˆçš„css
       build: [
 		'build/css/<%= pkg.name %>.css',
         'build/css/<%= pkg.name %>-theme.css',
 		'docs/css/<%= pkg.name %>-docs.css'
       ]
     },
-	//cssÑ¹Ëõ
+	//csså‹ç¼©
 	cssmin: {
       options: {
         compatibility: 'ie8',
@@ -187,13 +187,13 @@ module.exports = function (grunt) {
         dest: 'docs/css/<%= pkg.name %>-docs.min.css'
       }
     },
-	//¸øcssÌí¼ÓÍ·ĞÅÏ¢
+	//ç»™cssæ·»åŠ å¤´ä¿¡æ¯
 	usebanner: {
       options: {
         position: 'top',
         banner: '<%= banner %>'
       },
-	  //ËùÓĞÉú³ÉµÄcss
+	  //æ‰€æœ‰ç”Ÿæˆçš„css
       files: {
         src: 'build/css/*.css'
       },
@@ -201,7 +201,7 @@ module.exports = function (grunt) {
         src: 'docs/css/*.css'
       }
     },
-	//CSSÊôĞÔÅÅĞò
+	//CSSå±æ€§æ’åº
 	csscomb: {
       options: {
         config: 'config/csscomb/.csscomb.json'
@@ -219,14 +219,14 @@ module.exports = function (grunt) {
         dest: 'docs/css/'
       }
     },
-	//½«×ÖÌå¸´ÖÆµ½buildÄ¿Â¼ÏÂ
+	//å°†å­—ä½“å¤åˆ¶åˆ°buildç›®å½•ä¸‹
 	copy: {
       fonts: {
         src: 'src/main/resources/fonts/*',
         dest: 'build/resources/fonts/'
       }
     },
-	//¼à²âÎÄ¼ş¸Ä¶¯£¬Ò»ÓĞ¸Ä¶¯Ôò½øĞĞÈÎÎñ
+	//ç›‘æµ‹æ–‡ä»¶æ”¹åŠ¨ï¼Œä¸€æœ‰æ”¹åŠ¨åˆ™è¿›è¡Œä»»åŠ¡
     watch: {
       srcmain: {
         files: '<%= jshint.mainjs.src %>',
@@ -246,11 +246,11 @@ module.exports = function (grunt) {
   require('load-grunt-tasks')(grunt, { scope: 'devDependencies' });
   require('time-grunt')(grunt);
   // js build
-  //Çå¿ÕÄ¿Â¼£¬Óï·¨Ğ£Ñé£¬±àÂë·ç¸ñĞ£Ñé£¬Æ´½Ó£¬Ñ¹Ëõ
+  //æ¸…ç©ºç›®å½•ï¼Œè¯­æ³•æ ¡éªŒï¼Œç¼–ç é£æ ¼æ ¡éªŒï¼Œæ‹¼æ¥ï¼Œå‹ç¼©
   //grunt.registerTask('build-js', ['clean:js', 'jshint:mainjs', 'jscs:mainjs', 'concat','uglify']);
   grunt.registerTask('build-js', ['clean:js', 'jshint:mainjs',  'concat','uglify']);
   //css build
-  //±àÒëless
+  //ç¼–è¯‘less
   grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
   //css build
   grunt.registerTask('build-css', ['clean:css','less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'usebanner:files', 'csscomb:build', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
@@ -258,6 +258,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build-docs-css', ['clean:docs_css','less:compileDocs', 'autoprefixer:docs', 'usebanner:docs', 'csscomb:docs', 'cssmin:minifyDocs']);
   
   // Full distribution task.
-  //È«²¿build
+  //å…¨éƒ¨build
   grunt.registerTask('build', ['clean:build', 'build-css', 'copy:fonts', 'build-js']);
 };
