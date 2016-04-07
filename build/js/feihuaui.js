@@ -1,6 +1,6 @@
 /*!
  * feihuaui v1.0.0 (feihua666@sina.com)
- * Copyright 2014-2015 feihua
+ * Copyright 2014-2016 feihua
  */
 
 if (typeof jQuery === 'undefined') {

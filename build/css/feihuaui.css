@@ -1,6 +1,6 @@
 /*!
  * feihuaui v1.0.0 (feihua666@sina.com)
- * Copyright 2014-2015 feihua
+ * Copyright 2014-2016 feihua
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -249,21 +249,21 @@ img {
 }
 .fhui-button[disabled] {
   cursor: not-allowed;
-  background-color: #fff;
+  background-color: #286090;
   background-image: none;
   -webkit-box-shadow: none;
           box-shadow: none;
-  opacity: .7;
+  opacity: .65;
 }
 .fhui-button[disabled]:hover,
 .fhui-button[disabled]:focus,
 .fhui-button[disabled]:active {
   cursor: not-allowed;
-  background-color: #fff;
+  background-color: #286090;
   background-image: none;
   -webkit-box-shadow: none;
           box-shadow: none;
-  opacity: .7;
+  opacity: .65;
 }
 .fhui-button[disabled]:active {
   top: 0;
@@ -285,8 +285,7 @@ img {
 }
 .fhui-input[readonly] {
   cursor: not-allowed;
-  background-color: #eee;
-  opacity: 1;
+  opacity: .65;
 }
 
 /*# sourceMappingURL=feihuaui.css.map */

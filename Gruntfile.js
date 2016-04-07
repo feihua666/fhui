@@ -114,7 +114,7 @@ module.exports = function (grunt) {
         dest: 'build/css/<%= pkg.name %>.css'
       },
       compileTheme: {
-        src: 'src/main/less/theme.less',
+        src: 'src/main/less/<%= pkg.name %>-theme.less',
         dest: 'build/css/<%= pkg.name %>-theme.css'
       },
 	  compileDocs:{
