@@ -47,5 +47,29 @@
 .fhui-input[readonly] {
   background-color: #eee;
 }
+.fhui-layout-left,
+.fhui-layout-right,
+.fhui-layout-center,
+.fhui-layout-top,
+.fhui-layout-bottom {
+  border: 1px solid #ddd;
+}
+.fhui-layout-top-resize,
+.fhui-layout-bottom-resize,
+.fhui-layout-left-resize,
+.fhui-layout-right-resize {
+  background-color: #dedede;
+  /* 拖拽背景的颜色 */
+  opacity: .65;
+  /* 拖拽hander的透明度 */
+}
+.fhui-layout-top-resize,
+.fhui-layout-bottom-resize {
+  height: 2px;
+}
+.fhui-layout-left-resize,
+.fhui-layout-right-resize {
+  width: 2px;
+}
 
 /*# sourceMappingURL=feihuaui-theme.css.map */

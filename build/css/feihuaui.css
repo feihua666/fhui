@@ -287,5 +287,45 @@ img {
   cursor: not-allowed;
   opacity: .65;
 }
+.fhui-layout {
+  position: relative;
+}
+.fhui-layout-left,
+.fhui-layout-right,
+.fhui-layout-center,
+.fhui-layout-top,
+.fhui-layout-bottom {
+  position: absolute;
+  overflow: auto;
+}
+.fhui-layout-left,
+.fhui-layout-right {
+  width: 200px;
+}
+.fhui-layout-top {
+  height: 80px;
+}
+.fhui-layout-bottom {
+  height: 30px;
+}
+.fhui-layout-top-resize,
+.fhui-layout-bottom-resize {
+  position: absolute;
+  width: 100%;
+  border: 0;
+}
+.fhui-layout-left-resize,
+.fhui-layout-right-resize {
+  position: absolute;
+  border: 0;
+}
+.fhui-layout-left-resize:hover,
+.fhui-layout-right-resize:hover {
+  cursor: e-resize;
+}
+.fhui-layout-top-resize:hover,
+.fhui-layout-bottom-resize:hover {
+  cursor: s-resize;
+}
 
 /*# sourceMappingURL=feihuaui.css.map */
